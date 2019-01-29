@@ -1,0 +1,10 @@
+*
+Assets/Standard Assets/*
+!.gitattributes
+!.gitignore
+!readme.md
+!.gitkeep
+!*.cs
+!*.png
+!*.csproj
+!*/
