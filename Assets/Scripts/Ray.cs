@@ -40,7 +40,7 @@ public class Ray : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update ()
+    void Update ()
     {
         Move();
         Fire();
@@ -67,11 +67,9 @@ public class Ray : MonoBehaviour {
         }
         if (CrossPlatformInputManager.GetButtonDown("Jump"))
         {
-            double y = Math.Sin((angle + 90) * Math.PI / 180);
-            double x = Math.Cos((angle + 90) * Math.PI / 180);
-            Vector2 velocity = new Vector2((float)-x * intensity, (float)y * intensity);
+            Vector2 velocity = CalculateVelocity();
 
-            GameObject ball = Instantiate(balls[next], 
+            GameObject ball = Instantiate(balls[next],
                 transform.parent.position + offset, Quaternion.identity);
             ball.GetComponent<Rigidbody2D>().velocity = velocity;
             GenerateNext();
@@ -90,9 +88,7 @@ public class Ray : MonoBehaviour {
 
             if (body)
             {
-                double y = Math.Sin((angle + 90) * Math.PI / 180);
-                double x = Math.Cos((angle + 90) * Math.PI / 180);
-                body.velocity = new Vector2((float)-x * intensity,(float)y * intensity);
+                body.velocity = CalculateVelocity();
             }
             yield return new WaitForSeconds(seconds: shootingFrequency);
         }
@@ -121,6 +117,14 @@ public class Ray : MonoBehaviour {
         next2Ball.GetComponent<Image>().sprite = 
             balls[next2].GetComponent<SpriteRenderer>().sprite;
 
+    }
+
+    private Vector2 CalculateVelocity()
+    {
+        double y = Math.Sin((angle + 90) * Math.PI / 180);
+        double x = Math.Cos((angle + 90) * Math.PI / 180);
+        Vector2 velocity = new Vector2((float)-x * intensity, (float)y * intensity);
+        return velocity;
     }
 
 }

@@ -1,5 +1,6 @@
 *
 Assets/Standard Assets/*
+ios/*
 !.gitattributes
 !.gitignore
 !readme.md

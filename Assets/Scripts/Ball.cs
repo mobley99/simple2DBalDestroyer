@@ -11,11 +11,11 @@ public class Ball : MonoBehaviour {
     private bool isSleep;
 
     // First method on life cycle
-    void Awake () 
+    void Awake ()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         isSleep = false;
-	}
+    }
 
     private void Start()
     {
